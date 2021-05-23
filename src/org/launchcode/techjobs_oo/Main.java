@@ -12,7 +12,7 @@ public class Main {
         jobs.add(job1);
         jobs.add(job2);
         jobs.add(job3);
-
+        System.out.println(job2.getEmployer() instanceof Employer);
         for (Job job : jobs){
             System.out.println(job.getId());
         }
