@@ -44,12 +44,61 @@ public class Job {
         return Objects.hash(getId());
     }
 
+    //Custom toString to format job parameters
+    @Override
+    public String toString() {
+        if((this.getId() > 0) && (this.getName() != "")) {
+            String emp = String.valueOf(this.getEmployer());
+            String loc = String.valueOf(this.getLocation());
+            String pos = String.valueOf(this.getPositionType());
+            String comp = String.valueOf(this.getCoreCompetency());
+            if (emp == "") {
+                return "\nID: " + this.getId() +
+                        "\nName: " + this.getName() +
+                        "\nEmployer: Data not available." +
+                        "\nLocation: " + this.getLocation() +
+                        "\nPosition Type: " + this.getPositionType() +
+                        "\nCore Competency: " + this.getCoreCompetency() + "\n";
+            } else if (loc == "") {
+                return "\nID: " + this.getId() +
+                        "\nName: " + this.getName() +
+                        "\nEmployer: " + this.getEmployer() +
+                        "\nLocation: Data not available." +
+                        "\nPosition Type: " + this.getPositionType() +
+                        "\nCore Competency: " + this.getCoreCompetency() + "\n";
+            } else if (pos == "") {
+                return "\nID: " + this.getId() +
+                        "\nName: " + this.getName() +
+                        "\nEmployer: " + this.getEmployer() +
+                        "\nLocation: " + this.getLocation() +
+                        "\nPosition Type: Data not available." +
+                        "\nCore Competency: " + this.getCoreCompetency() + "\n";
+            } else if (comp == "") {
+                return "\nID: " + this.getId() +
+                        "\nName: " + this.getName() +
+                        "\nEmployer: " + this.getEmployer() +
+                        "\nLocation: " + this.getLocation() +
+                        "\nPosition Type: " + this.getPositionType() +
+                        "\nCore Competency: Data not available." + "\n";
+            } else {
+                return "\nID: " + this.getId() +
+                    "\nName: " + this.getName() +
+                    "\nEmployer: " + this.getEmployer() +
+                    "\nLocation: " + this.getLocation() +
+                    "\nPosition Type: " + this.getPositionType() +
+                    "\nCore Competency: " + this.getCoreCompetency() + "\n";
+            } // end nested if for if a field is blank
+        } else {
+            return "OOPS! This job does not seem to exist.";
+        } // end if statement for if id is generated but name isn't
+    } // end custom toString
+
     // Getters for each field EXCEPT nextId.
 
     public String getName() { return name; }
     public Employer getEmployer() { return employer; }
-    public Location getLocation() { return location; }
-    public PositionType getPositionType() { return positionType; }
+    public Location getLocation() { return location;}
+    public PositionType getPositionType() { return positionType;}
     public CoreCompetency getCoreCompetency() { return coreCompetency; }
     public int getId() { return id; }
 

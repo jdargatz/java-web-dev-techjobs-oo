@@ -8,11 +8,16 @@ import static org.junit.Assert.*;
 public class JobTest {
     Job testJob;
     Job testJob2;
+    Job emptyJob;
+    Job emptyEmployer;
     @Before
     public void createJobs(){
     testJob = new Job("Technical Support", new Employer("Emerson"), new Location("STL"), new PositionType("Customer" +
             " Experience"), new CoreCompetency("Problem Solving"));
     testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    emptyEmployer = new Job("Ice cream taster", new Employer(""), new Location("Home"), new PositionType("UX"),
+            new CoreCompetency("Taste"));
+    emptyJob = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
     } // end createJobs
 
  //Test that the unique ID sets correctly - not equal and differs by 1
@@ -45,5 +50,38 @@ public class JobTest {
     public void testJobsForEquality() {
     assertFalse(testJob == testJob2);
     } // end test 3
+
+//test custom toString method - Job listing should print out as expected: blank line before/after, every
+// parameter on its own line.
+    @Test
+    public void testJobsForToString() {
+    String convertedTestJob = testJob.toString();
+    String tester = "\nID: " + testJob.getId() +
+            "\nName: Technical Support" +
+            "\nEmployer: Emerson" +
+            "\nLocation: STL" +
+            "\nPosition Type: Customer Experience" +
+            "\nCore Competency: Problem Solving" + "\n";
+    assertEquals(tester, convertedTestJob);
+    } // end test 4
+
+    @Test
+    public void testJobsForDataNotAvailable() {
+        String convertedTestJob = emptyEmployer.toString();
+        String tester = "\nID: " + emptyEmployer.getId() +
+                "\nName: Ice cream taster" +
+                "\nEmployer: Data not available." +
+                "\nLocation: Home" +
+                "\nPosition Type: UX" +
+                "\nCore Competency: Taste" + "\n";
+        assertEquals(tester, convertedTestJob);
+    } // end test 5
+
+    @Test
+    public void testJobsForJobNotAvailable() {
+        String convertedTestJob = emptyJob.toString();
+        String tester = "OOPS! This job does not seem to exist.";
+        assertEquals(tester, convertedTestJob);
+    } // end test 6
 
 } // end JobTest class
