@@ -13,12 +13,12 @@ public class Main {
         jobs.add(job1);
         jobs.add(job2);
         jobs.add(job3);
-        System.out.println(job3);
-        System.out.println(job4);
+        jobs.add(job4);
+
 
 
         for (Job job : jobs){
-            System.out.println(job.getId());
+            System.out.println(job);
         }
     }
 
